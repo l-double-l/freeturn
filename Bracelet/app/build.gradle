@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.freeturn.bracelet"
-        minSdkVersion 17
+        minSdkVersion 18
         targetSdkVersion 18
     }
 

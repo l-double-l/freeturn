@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import android.os.Vibrator;
 
+import android.view.Menu;
 import android.view.View;
 
 import android.widget.Button;
@@ -23,30 +24,12 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity 
 {
-    // Debugging
-    private static final String TAG = "BluetoothChat";
-    private static final boolean D = true;
-    // Message types sent from the BluetoothChatService Handler
-    public static final int MESSAGE_STATE_CHANGE = 1;
-    public static final int MESSAGE_READ = 2;
-    public static final int MESSAGE_WRITE = 3;
-    public static final int MESSAGE_DEVICE_NAME = 4;
-    public static final int MESSAGE_TOAST = 5;
-    // Key names received from the BluetoothChatService Handler
-    public static final String DEVICE_NAME = "device_name";
-    public static final String TOAST = "toast";
-    // Intent request codes
-    private static final int REQUEST_CONNECT_DEVICE = 1;
-    private static final int REQUEST_ENABLE_BT = 2;
-	
-	private static final int SERVER_PORT = 1234;
 	int fiction_i = 0;
 	int hand	  = 0;
 	int[][] fiction_protocol_data = {{60, 90}, {50, 90}, {30, 90}, {10,90}, {9, 87}, {4, 90}, {2, 90}, {0,0}};
 	int soundID;
 	IntentFilter intentFilter;
 
-	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -83,7 +66,23 @@ public class MainActivity extends Activity
         //RefreshNavigation();
         
     };
-	    
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        if (!false) {
+            menu.findItem(R.id.menu_stop).setVisible(false);
+            menu.findItem(R.id.menu_scan).setVisible(true);
+            menu.findItem(R.id.menu_refresh).setActionView(null);
+        } else {
+            menu.findItem(R.id.menu_stop).setVisible(true);
+            menu.findItem(R.id.menu_scan).setVisible(false);
+            menu.findItem(R.id.menu_refresh).setActionView(
+                    R.layout.actionbar_indeterminate_progress);
+        }
+        return true;
+    }
+
     public void	RefreshNavigation(int data)
     {
 
