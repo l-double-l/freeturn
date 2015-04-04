@@ -1,51 +1,25 @@
 package com.freeturn.bracelet;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
-import org.apache.http.impl.conn.tsccm.WaitingThread;
-
-import com.freeturn.bluetooth.WaitThread;
 
 import android.app.Activity;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
-import android.content.Context;
-import android.content.Intent;
+
 import android.content.IntentFilter;
-import android.location.Location;
-import android.media.AudioManager;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.media.SoundPool;
-import android.media.ToneGenerator;
-import android.net.Uri;
-import android.net.wifi.p2p.WifiP2pManager;
-import android.net.wifi.p2p.WifiP2pManager.ActionListener;
-import android.net.wifi.p2p.WifiP2pManager.Channel;
-import android.net.wifi.p2p.WifiP2pManager.DnsSdServiceResponseListener;
-import android.net.wifi.p2p.WifiP2pManager.DnsSdTxtRecordListener;
-import android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceInfo;
+
+
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
+
 import android.os.Vibrator;
-import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
-import android.widget.ArrayAdapter;
+
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
+
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class MainActivity extends Activity 
 {
@@ -71,9 +45,7 @@ public class MainActivity extends Activity
 	int[][] fiction_protocol_data = {{60, 90}, {50, 90}, {30, 90}, {10,90}, {9, 87}, {4, 90}, {2, 90}, {0,0}};
 	int soundID;
 	IntentFilter intentFilter;
-	private WifiP2pManager mManager;
-	private Channel mChannel;
-	
+
 	
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -108,20 +80,18 @@ public class MainActivity extends Activity
             }
 
         });
-		WaitThread bt_wait_connection_thread = new WaitThread();
-		bt_wait_connection_thread.run();
-        //RefreshNavigation(); // при запуске грузим первое значение
+        //RefreshNavigation();
         
     };
 	    
     public void	RefreshNavigation(int data)
     {
-    	/*
+
     	int current_distance = fiction_protocol_data[fiction_i][0];
     	int current_azimuth  = fiction_protocol_data[fiction_i][1];
-    	*/
-    	int current_distance = data;
-    	int current_azimuth  = data;
+
+    	current_distance = data;
+    	current_azimuth  = data;
     	DoAction(current_distance, current_azimuth);
     };
     
@@ -162,7 +132,7 @@ public class MainActivity extends Activity
     	final TextView azimuth_container = (TextView) findViewById(R.id.azimuth);
     	
     	distance_container.setText(distance + " m");
-    	azimuth_container.setText(azimuth + "°");
+    	azimuth_container.setText(azimuth + "пїЅ");
     	fiction_i++;
     	if (fiction_i == fiction_protocol_data.length)
     		fiction_i = 0;
